@@ -10,30 +10,39 @@
 
     <title>Signin · Stark Enterprise</title>
     <!-- Custom styles for this template -->
-    <link href="../style/login.css" rel="stylesheet">
+    <link href="/ers/style/login.css" rel="stylesheet">
 </head>
-<body class="text-center">
-<form class="form-signin" method="POST" action="/ers/login" role="form">
-    <img class="image mb-4" src="../image/sigil.jpg" alt="Stark Logo" width="100" height="100">
-    <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="username" name="username" id="inputUsername" class="form-control" placeholder="Username" required
-           autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div>
-        <label>Don't have an account?
-            <button class="btn btn-link" onclick="window.location.href =
-            '';" style="color: darkblue">Sign Up!</button>
-        </label>
+<body><div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto">
+                            <h3 class="login-heading mb-4">Welcome back!</h3>
+                            <form method="POST" action="/ers/login" role="form">
+                                <div class="form-label-group">
+                                    <input type="username" name="username" id="username" class="form-control"
+                                           placeholder="Username" required autofocus>
+                                    <label for="username">Username</label>
+                                </div>
+
+                                <div class="form-label-group">
+                                    <input type="password" name="password" id="inputPassword" class="form-control"
+                                           placeholder="Password" required>
+                                    <label for="inputPassword">Password</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                                <div id="invalidlogin"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit"
-            style="background-color: #7F7F7F;border-color: black">Sign
-        in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 1991-2019</p>
-</form>
-
-
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

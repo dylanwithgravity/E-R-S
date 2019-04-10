@@ -31,4 +31,22 @@
         <servlet-name>AdminHomeServlet</servlet-name>
         <url-pattern>/admin_home</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <display-name>LogoutSessionServlet</display-name>
+        <servlet-name>LogoutSessionServlet</servlet-name>
+        <servlet-class>servlet.LogoutSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutSessionServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>EmployeeSubmitRequestServlet</display-name>
+        <servlet-name>EmployeeSubmitRequestServlet</servlet-name>
+        <servlet-class>servlet.EmployeeSubmitRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeSubmitRequestServlet</servlet-name>
+        <url-pattern>/submitRequest</url-pattern>
+    </servlet-mapping>
 </web-app>

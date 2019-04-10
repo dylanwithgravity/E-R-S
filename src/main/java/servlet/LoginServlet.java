@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class LoginServlet extends HttpServlet {
     @Override
@@ -26,21 +27,19 @@ public class LoginServlet extends HttpServlet {
 
         EmployeeDaoImpl edao = new EmployeeDaoImpl();
         Employee employee = edao.selectEmployeeByUsername(username);
-        System.out.println(employee);
 
         // check if record exists and password don't matches
         if(employee == null || !password.equals(employee.getPassword())) {
-            System.out.println("Here 2");
-            resp.sendRedirect("login");
-            System.out.println("here 3");
+            //HACK: - Create AJAX to validate or not?
+            resp.sendRedirect("html/login.html");
+            LoggerSingleton.getLogger().info("Invalid login attempt with username " + username);
             return;
         }
 
         // set up session if user is valid
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
-        System.out.println("Created session!");
-
+        LoggerSingleton.getLogger().info("Session created for " + username);
         // redirect to homepage (admin || standard)
         resp.sendRedirect(RequestHelper.getLoginHomepageRedirect(employee));
     }

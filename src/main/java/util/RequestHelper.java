@@ -4,7 +4,6 @@ import model.Employee;
 
 public class RequestHelper {
     public static String getLoginHomepageRedirect(Employee employee) {
-        System.out.println("are you in here?");
         switch (employee.getRoleID()) {
             case 1:
                 return "admin_home";
