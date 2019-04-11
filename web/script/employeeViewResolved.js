@@ -8,13 +8,14 @@ function sendAjaxGet(url, func) {
 
     xhr.open("GET", url);
     xhr.send();
+    console.log("This is running!!")
 }
 
-sendAjaxGet("http://localhost:8080/ers/emp_pending", display);
+sendAjaxGet("http://localhost:8080/ers/emp_resolved", display);
 
 function display(xhr) {
     requests = JSON.parse(xhr.responseText).pending;
-    table = document.getElementById("employeeViewPendingTable");
+    table = document.getElementById("employeeViewResolvedTable");
 
     for(let i in requests) {
         let reqType = " ";
@@ -42,6 +43,7 @@ function display(xhr) {
             `<td>${requests[i].requestID}</td>
 			<td>${amount}</td>
 			<td>${requests[i].submitDate}</td>
+			<td>${requests[i].resolvedDate}</td>
 			<td>${reqType}</td>
 			<td>${requests[i].description}</td>`;
 

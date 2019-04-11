@@ -18,8 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class GetPendingServlet extends HttpServlet {
 
+public class GetResolvedServlet extends HttpServlet {
     private Gson gson = new Gson();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     @Override
@@ -29,7 +29,7 @@ public class GetPendingServlet extends HttpServlet {
             resp.sendRedirect("login");
             return;
         }
-        LoggerSingleton.getLogger().info(session.getAttribute("username") + " requesting pending requests.");
+        LoggerSingleton.getLogger().info(session.getAttribute("username") + " requesting resolved requests.");
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
@@ -40,15 +40,18 @@ public class GetPendingServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
         int employeeID = employeeDao.selectEmployeeByUsername(username).getEmployeeID();
         String queryPending =
-                "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID = 1 AND REIMB_AUTHOR = " + employeeID + "";
+                "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID IN (2,3) AND REIMB_AUTHOR = " + employeeID + "";
         List<Reimbursement> list = reimbursementDao.selectReimbursements(queryPending);
 
         for (Reimbursement rb: list
-             ) {
+        ) {
             try {
                 Date date = dateFormat.parse(rb.getSubmitDate());
                 String dtString = dateFormat.format(date);
                 rb.setSubmitDate(dtString);
+                date = dateFormat.parse(rb.getResolvedDate());
+                dtString = dateFormat.format(date);
+                rb.setResolvedDate(dtString);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -57,7 +60,8 @@ public class GetPendingServlet extends HttpServlet {
 
 
         String data = this.gson.toJson(list);
-        data = "{\"pending\": " + data + "}";
+        data = "{\"resolved\": " + data + "}";
+        System.out.println(data);
         out.print(data);
     }
 

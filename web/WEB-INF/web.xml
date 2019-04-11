@@ -67,4 +67,22 @@
         <servlet-name>GetPendingServlet</servlet-name>
         <url-pattern>/emp_pending</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <display-name>EmployeeViewResolvedRequestServlet</display-name>
+        <servlet-name>EmployeeViewResolvedRequestServlet</servlet-name>
+        <servlet-class>servlet.EmployeeViewResolvedRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeViewResolvedRequestServlet</servlet-name>
+        <url-pattern>/emp_view_resolved</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>GetResolvedServlet</display-name>
+        <servlet-name>GetResolvedServlet</servlet-name>
+        <servlet-class>servlet.GetResolvedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetResolvedServlet</servlet-name>
+        <url-pattern>/emp_resolved</url-pattern>
+    </servlet-mapping>
 </web-app>
