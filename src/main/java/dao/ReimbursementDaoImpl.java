@@ -6,7 +6,10 @@ import util.LoggerSingleton;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {
     private Connection con;
@@ -38,5 +41,35 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
             e.printStackTrace();
         }
         return entryAdded;
+    }
+
+    @Override
+    public List<Reimbursement> selectReimbursements(String query) {
+        con = DBUtil.getInstance();
+        List<Reimbursement> list = new ArrayList<>();
+        try {
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int reimbID = rs.getInt("REIMB_ID");
+                double amount = rs.getDouble("REIMB_AMOUNT");
+                String reimbSubmitted = rs.getString("REIMB_SUBMITTED");
+                String reimbResolved = rs.getString("REIMB_RESOLVED");
+                String reimbDescription = rs.getString("REIMB_DESCRIPTION");
+                //HACK: - get receipt?
+                int reimbAuthor = rs.getInt("REIMB_AUTHOR");
+                int reimbResolver = rs.getInt("REIMB_RESOLVER");
+                int reimbStatusID = rs.getInt("REIMB_STATUS_ID");
+                int reimbTypeID = rs.getInt("REIMB_TYPE_ID");
+
+                list.add(new Reimbursement(reimbID, amount, reimbSubmitted, reimbResolved, reimbDescription, null,
+                        reimbAuthor, reimbResolver, reimbStatusID, reimbTypeID));
+            }
+        } catch (SQLException e) {
+            LoggerSingleton.getLogger().fatal("Error selecting reimbursements..");
+            e.printStackTrace();
+        }
+        return list;
     }
 }

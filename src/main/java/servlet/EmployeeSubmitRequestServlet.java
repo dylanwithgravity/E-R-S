@@ -4,6 +4,7 @@ import dao.EmployeeDaoImpl;
 import dao.ReimbursementDaoImpl;
 import model.Employee;
 import model.Reimbursement;
+import util.LoggerSingleton;
 import util.ReimbursementTypeHelper;
 import util.RequestHelper;
 
@@ -50,6 +51,7 @@ public class EmployeeSubmitRequestServlet extends HttpServlet {
             reimbursement.setTypeID(ReimbursementTypeHelper.getReimbursementTypeID(reimbursementType));
 
             if(reimbursementDao.insertReimbursementRequest(reimbursement)) {
+                LoggerSingleton.getLogger().info("Reimbursement request submitted for: " + employee.getEmployeeID());
                 //HACK: - This is temporary for debugging
                 resp.sendRedirect(RequestHelper.getLoginHomepageRedirect(employee));
             }

@@ -49,4 +49,22 @@
         <servlet-name>EmployeeSubmitRequestServlet</servlet-name>
         <url-pattern>/submitRequest</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <display-name>EmployeeViewPendingRequestServlet</display-name>
+        <servlet-name>EmployeeViewPendingRequestServlet</servlet-name>
+        <servlet-class>servlet.EmployeeViewPendingRequestsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeViewPendingRequestServlet</servlet-name>
+        <url-pattern>/emp_view_pend</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>GetPendingServlet</display-name>
+        <servlet-name>GetPendingServlet</servlet-name>
+        <servlet-class>servlet.GetPendingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPendingServlet</servlet-name>
+        <url-pattern>/emp_pending</url-pattern>
+    </servlet-mapping>
 </web-app>
