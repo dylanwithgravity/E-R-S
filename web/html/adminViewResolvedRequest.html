@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pending Requests</title>
+    <title>Resolved Requests</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,8 +13,8 @@
 <body style="background-color: #333;">
 
 <h1 class="text-center" style="color: #fff;">
-    <span>Pending Request</span>
-    <form action="employee_home" method="GET"><button class='btn btn-primary pull-right' style="color: #333;
+    <span>Resolved Request</span>
+    <form action="admin_home" method="GET"><button class='btn btn-primary pull-right' style="color: #333;
     text-shadow: none;
     background-color: #fff;
     border:
@@ -23,12 +23,15 @@
     </form>
 </h1>
 <hr/>
-<table id="employeeViewPendingTable" class="table table-striped table-dark">
+<table id="adminViewResolvedTable" class="table table-striped table-dark">
     <thead>
     <tr>
         <th scope="col">Request ID</th>
+        <th scope="col">Author ID</th>
+        <th scope="col">Manager ID</th>
         <th scope="col">Amount</th>
         <th scope="col">Submit Date</th>
+        <th scope="col">Resolved Date</th>
         <th scope="col">Type</th>
         <th scope="col">Description</th>
     </tr>
@@ -55,6 +58,6 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-<script src="/ers/script/employeeViewPending.js"></script>
+<script src="/ers/script/adminViewResolved.js"></script>
 </body>
 </html>

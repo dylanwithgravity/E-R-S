@@ -5,6 +5,7 @@ function sendAjaxGet(url, func) {
             func(this);
     }
 
+
     xhr.open("GET", url);
     xhr.send();
 }
@@ -13,12 +14,14 @@ sendAjaxGet("http://localhost:8080/ers/emp_resolved", display);
 
 function display(xhr) {
     requests = JSON.parse(xhr.responseText).resolved;
-    table = document.getElementById("employeeViewResolvedTable");
+
+    table = document.getElementById("adminViewResolvedTable");
 
     for(let i in requests) {
         let reqType = " ";
         let amount = (requests[i].amount).toString();
         let lastChar = amount.charAt(amount.length-2);
+        let reqid = (requests[i].requestID);
 
         if (requests[i].typeID == 1) {
             reqType = "Lodging";
@@ -38,7 +41,9 @@ function display(xhr) {
         newRow = document.createElement("tr");
 
         newRow.innerHTML =
-            `<td>${requests[i].requestID}</td>
+            `<td>${reqid}</td>
+            <td>${requests[i].employeeID}</td>
+            <td>${requests[i].adminID}</td>
 			<td>${amount}</td>
 			<td>${requests[i].submitDate}</td>
 			<td>${requests[i].resolvedDate}</td>

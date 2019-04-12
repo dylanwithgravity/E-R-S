@@ -1,5 +1,7 @@
 package servlet;
 
+import util.LoggerSingleton;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,19 @@ public class AdminHomeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if(session == null) {
+            LoggerSingleton.getLogger().info("Invalid session redirecting to login");
+            resp.sendRedirect("login");
+            return;
+        }
+
+        String logoutButton = req.getParameter("logout");
+        if(logoutButton != null && logoutButton.equals("Log Out")) {
+            LoggerSingleton.getLogger().info(session.getAttribute("username"));
+            resp.sendRedirect("logout");
+        }
+
 
     }
 }

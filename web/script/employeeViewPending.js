@@ -1,19 +1,20 @@
 function sendAjaxGet(url, func) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if(this.readyState === 4 && this.status === 200) {
+        if(this.readyState === 4 && this.status === 200)
             func(this);
         }
-    }
+
 
     xhr.open("GET", url);
     xhr.send();
 }
 
-sendAjaxGet("http://localhost:8080/ers/emp_pending", display);
+sendAjaxGet("http://localhost:8080/ers/get_pending", display);
 
 function display(xhr) {
     requests = JSON.parse(xhr.responseText).pending;
+
     table = document.getElementById("employeeViewPendingTable");
 
     for(let i in requests) {

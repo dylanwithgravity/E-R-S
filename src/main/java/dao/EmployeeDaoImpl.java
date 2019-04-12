@@ -27,8 +27,55 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
         } catch (SQLException e) {
             LoggerSingleton.getLogger().error("Unable to fetch employee.." + e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
+    }
+
+    @Override
+    public boolean updateEmployeeProfile(Employee employee) {
+        boolean entryAdded = false;
+        con = DBUtil.getInstance();
+
+        try {
+            String baseQuery = "UPDATE ERS_USERS SET ";
+            if(employee.getFirstName() == null && employee.getLastName() == null ) {
+                con.close();
+                return false;
+            } else if(employee.getFirstName() != null && employee.getLastName() != null) {
+                baseQuery += "USER_FIRST_NAME ='" + employee.getFirstName() + "'," + "USER_LAST_NAME ='" + employee.getLastName() + "'";
+            } else if (employee.getFirstName() != null) {
+                baseQuery +="USER_FIRST_NAME ='" + employee.getFirstName() + "'";
+            } else if (employee.getLastName() != null) {
+                baseQuery += "USER_LAST_NAME ='" + employee.getLastName() + "'";
+            }
+
+            String endQuery = " WHERE ERS_USERNAME = ?";
+
+            PreparedStatement stmt = con.prepareStatement(baseQuery + endQuery);
+            stmt.setString(1, employee.getUserName());
+            int rowAdded = stmt.executeUpdate();
+            con.commit();
+
+            if(rowAdded == 1) {
+                entryAdded = true;
+            }
+
+        } catch (SQLException e) {
+            LoggerSingleton.getLogger().error("Unable to update employee.." + e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return entryAdded;
     }
 
     private Employee extractEmployeeFromResultSet(ResultSet rs) throws SQLException {

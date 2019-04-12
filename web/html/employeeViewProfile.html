@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Reimbursement Form</title>
+    <title>Update Profile</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -17,12 +17,21 @@
 
         <div class="col-xl-8 offset-xl-2 py-5">
 
-            <h1>Reimbursement Form</h1>
+            <h1 style="display: inline">Update Profile</h1>
+            <form action="employee_home" method="GET">
+                <button class='btn btn-primary pull-right' style="color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border:
+     .05rem solid #fff; margin-left: 50rem;">
+                    Home
+                </button>
+            </form>
 
-            <p class="lead">Please fill out the form and provide as much details as possible.</p>
+            <p class="lead">You may only update your first name and last name at this time.</p>
 
             <!-- We're going to place the form here in the next step -->
-            <form id="contact-form" method="POST" action="submitRequest" role="form">
+            <form id="contact-form" method="POST" action="/ers/update_profile" role="form">
 
                 <div class="messages"></div>
 
@@ -31,10 +40,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_submit">Amount *</label>
-                                <input id="form_submit" type="text" name="amount" class="form-control"
-                                       placeholder="Please enter the amount *" required="required"
-                                       data-error="Amount is required.">
+                                <label for="form_firstname">First Name</label>
+                                <input id="form_firstname" type="text" name="firstname" class="form-control"
+                                       placeholder="First Name" value="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_lastname">Last Name</label>
+                                <input id="form_lastname" type="text" name="lastname" class="form-control"
+                                       placeholder="Last Name" value="">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -42,45 +58,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_need">Reimbursement type *</label>
-                                <select id="form_need" name="type" class="form-control" required="required"
-                                        data-error="Please specify your type.">
-                                    <option value=""></option>
-                                    <option value="Lodging">Lodging</option>
-                                    <option value="Travel">Travel</option>
-                                    <option value="Food">Food</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                <label for="form_username">Username</label>
+                                <label id="form_username" type="text" name="username" class="form-control"
+                                       placeholder="Username"></label>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-<!--                        <div class="col-md-6">-->
-<!--                            <div class="form-group">-->
-<!--                                <div class="col-md-12">-->
-<!--                                    <input type="submit" class="btn btn-success btn-receipt" value="Add Receipt">-->
-<!--                                </div>-->
-<!--                                <div class="help-block with-errors"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_description">Description *</label>
-                                <textarea id="form_description" name="description" class="form-control"
-                                          placeholder="Please provide details *" rows="4" required="required"
-                                          data-error="Please, provide a description."></textarea>
+                                <label for="form_useremail">User Email</label>
+                                <label id="form_useremail" type="text" name="useremail" class="form-control"
+                                       placeholder="User Email"></label>
                                 <div class="help-block with-errors"></div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="submit" class="btn btn-success btn-send" value="Submit request">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="text-muted">
-                                <strong>*</strong> These fields are required.</p>
+                            <input type="submit" class="btn btn-success btn-send" value="Update Profile">
                         </div>
                     </div>
                 </div>
@@ -103,5 +98,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"
         integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
+<script src="/ers/script/getProfile.js"></script>
+
 </body>
 </html>

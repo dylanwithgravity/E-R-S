@@ -5,20 +5,23 @@ function sendAjaxGet(url, func) {
             func(this);
     }
 
+
     xhr.open("GET", url);
     xhr.send();
 }
 
-sendAjaxGet("http://localhost:8080/ers/emp_resolved", display);
+sendAjaxGet("http://localhost:8080/ers/get_pending", display);
 
 function display(xhr) {
-    requests = JSON.parse(xhr.responseText).resolved;
-    table = document.getElementById("employeeViewResolvedTable");
+    requests = JSON.parse(xhr.responseText).pending;
+
+    table = document.getElementById("adminViewPendingTable");
 
     for(let i in requests) {
         let reqType = " ";
         let amount = (requests[i].amount).toString();
         let lastChar = amount.charAt(amount.length-2);
+        let reqid = (requests[i].requestID);
 
         if (requests[i].typeID == 1) {
             reqType = "Lodging";
@@ -38,12 +41,13 @@ function display(xhr) {
         newRow = document.createElement("tr");
 
         newRow.innerHTML =
-            `<td>${requests[i].requestID}</td>
+            `<td>${reqid}</td>
+            <td>${requests[i].employeeID}</td>
 			<td>${amount}</td>
 			<td>${requests[i].submitDate}</td>
-			<td>${requests[i].resolvedDate}</td>
 			<td>${reqType}</td>
-			<td>${requests[i].description}</td>`;
+			<td>${requests[i].description}</td>
+            <td><form action="update_request" method="POST"><button name="approve" type="submit" class="btn" value=${reqid}>Approve</button> <button name="deny" action="update_request" method="POST" type="submit" class="btn" value=${reqid} >Deny</button></form></td>`;
 
         table.appendChild(newRow);
 

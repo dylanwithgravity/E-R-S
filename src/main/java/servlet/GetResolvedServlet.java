@@ -3,6 +3,7 @@ package servlet;
 import com.google.gson.Gson;
 import dao.EmployeeDaoImpl;
 import dao.ReimbursementDaoImpl;
+import model.Employee;
 import model.Reimbursement;
 import util.LoggerSingleton;
 
@@ -37,11 +38,18 @@ public class GetResolvedServlet extends HttpServlet {
         ReimbursementDaoImpl reimbursementDao = new ReimbursementDaoImpl();
         EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
 
+        String queryResolved = "";
+
         String username = (String) session.getAttribute("username");
-        int employeeID = employeeDao.selectEmployeeByUsername(username).getEmployeeID();
-        String queryPending =
-                "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID IN (2,3) AND REIMB_AUTHOR = " + employeeID + "";
-        List<Reimbursement> list = reimbursementDao.selectReimbursements(queryPending);
+
+        Employee employee = employeeDao.selectEmployeeByUsername(username);
+        if (employee.getRoleID() == 2) {
+            queryResolved =
+                    "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID IN (2,3) AND REIMB_AUTHOR = " + employee.getEmployeeID() + "";
+        } else {
+            queryResolved = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID IN (2,3)";
+        }
+        List<Reimbursement> list = reimbursementDao.selectReimbursements(queryResolved);
 
         for (Reimbursement rb: list
         ) {
@@ -61,8 +69,8 @@ public class GetResolvedServlet extends HttpServlet {
 
         String data = this.gson.toJson(list);
         data = "{\"resolved\": " + data + "}";
-        System.out.println(data);
         out.print(data);
+        out.flush();
     }
 
     @Override

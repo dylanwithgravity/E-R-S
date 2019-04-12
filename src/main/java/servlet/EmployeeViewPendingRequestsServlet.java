@@ -23,8 +23,6 @@ public class EmployeeViewPendingRequestsServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         if(session == null) {
             resp.sendRedirect("login");
-        } else {
-
         }
     }
 }

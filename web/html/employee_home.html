@@ -38,22 +38,22 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header>
         <form action="employee_home" method="POST">
-            <h3 class="masthead-brand">Reimbursement Portal</h3>
+            <h3 class="masthead-brand">Employee Reimbursement Portal</h3>
             <nav class="nav nav-masthead justify-content-center">
                 <a class="nav-link active" href="submitRequest">New Request</a>
                 <a class="nav-link" href="emp_view_pend">Pending</a>
                 <a class="nav-link" href="emp_view_resolved">Resolved</a>
-                <a class="nav-link" href="#">View Profile</a>
-                <a class="nav-link" href="#">Update Profile</a>
+                <a class="nav-link" href="emp_view_profile">Profile</a>
                 <input type="submit" value="Log Out" name="logout" class="btn btn-sm btn-secondary">
             </nav>
         </form>
     </header>
     <main role="main" class="inner cover" style="padding-top: 200px">
-        <h1 id="welcomeuser" class="cover-heading">Welcome Dylan!</h1>
-        <p id="pending" class="lead">You have 1 pending request</p>
+        <h1 id="welcomeuser" class="cover-heading">!</h1>
+        <p id="message" class="lead">To get started simply click the "New Request" button to begin a new request</p>
+        <p id="pending" class="lead"></p>
         <p id="and" class="lead">and</p>
-        <p id="resolved" class="lead"> 3 resolved requests.</p>
+        <p id="resolved" class="lead"></p>
     </main>
 </div>
 
@@ -63,5 +63,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="/ers/script/getHome.js"></script>
+
 </body>
 </html>

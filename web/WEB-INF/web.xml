@@ -65,7 +65,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPendingServlet</servlet-name>
-        <url-pattern>/emp_pending</url-pattern>
+        <url-pattern>/get_pending</url-pattern>
     </servlet-mapping>
     <servlet>
         <display-name>EmployeeViewResolvedRequestServlet</display-name>
@@ -84,5 +84,77 @@
     <servlet-mapping>
         <servlet-name>GetResolvedServlet</servlet-name>
         <url-pattern>/emp_resolved</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>EmployeeViewProfileServlet</display-name>
+        <servlet-name>EmployeeViewProfileServlet</servlet-name>
+        <servlet-class>servlet.EmployeeViewProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeViewProfileServlet</servlet-name>
+        <url-pattern>/emp_view_profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>GetProfileServlet</display-name>
+        <servlet-name>GetProfileServlet</servlet-name>
+        <servlet-class>servlet.GetProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetProfileServlet</servlet-name>
+        <url-pattern>/get_profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>UpdateProfileServlet</display-name>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <servlet-class>servlet.UpdateProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <url-pattern>/update_profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>GetHomeServlet</display-name>
+        <servlet-name>GetHomeServlet</servlet-name>
+        <servlet-class>servlet.GetHomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetHomeServlet</servlet-name>
+        <url-pattern>/get_home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>AdminViewPendingRequestServlet</display-name>
+        <servlet-name>AdminViewPendingRequestServlet</servlet-name>
+        <servlet-class>servlet.AdminViewPendingRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminViewPendingRequestServlet</servlet-name>
+        <url-pattern>/admin_view_pend</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>UpdateReimbursementRequestServlet</display-name>
+        <servlet-name>UpdateReimbursementRequestServlet</servlet-name>
+        <servlet-class>servlet.UpdateReimbursementRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateReimbursementRequestServlet</servlet-name>
+        <url-pattern>/update_request</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>AdminViewResolvedRequestServlet</display-name>
+        <servlet-name>AdminViewResolvedRequestServlet</servlet-name>
+        <servlet-class>servlet.AdminViewResolvedRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminViewResolvedRequestServlet</servlet-name>
+        <url-pattern>/admin_view_resolved</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <display-name>AdminViewProfileServlet</display-name>
+        <servlet-name>AdminViewProfileServlet</servlet-name>
+        <servlet-class>servlet.AdminViewProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminViewProfileServlet</servlet-name>
+        <url-pattern>/admin_view_profile</url-pattern>
     </servlet-mapping>
 </web-app>

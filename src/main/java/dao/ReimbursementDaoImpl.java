@@ -13,6 +13,39 @@ import java.util.List;
 
 public class ReimbursementDaoImpl implements ReimbursementDao {
     private Connection con;
+
+    @Override
+    public boolean updateReimbursementRequest(Reimbursement reimbursement) {
+        boolean entryAdded = false;
+        con = DBUtil.getInstance();
+
+        try {
+
+            PreparedStatement stmt = con.prepareStatement("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED = sysdate, " +
+                    "REIMB_RESOLVER = ?, REIMB_STATUS_ID = ? WHERE REIMB_ID = ?");
+            stmt.setInt(1, reimbursement.getAdminID());
+            stmt.setInt(2, reimbursement.getStatusID());
+            stmt.setInt(3, reimbursement.getRequestID());
+
+            int rowAdded = stmt.executeUpdate();
+            con.commit();
+
+            if(rowAdded == 1) {
+                entryAdded = true;
+            }
+
+        } catch (SQLException e) {
+            LoggerSingleton.getLogger().error("Unable to update reimbursement.." + e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return entryAdded;
+    }
+
     @Override
     public boolean insertReimbursementRequest(Reimbursement reimbursement) {
         con = DBUtil.getInstance();
@@ -49,6 +82,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
         List<Reimbursement> list = new ArrayList<>();
         try {
             PreparedStatement stmt = con.prepareStatement(query);
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -69,6 +103,12 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
         } catch (SQLException e) {
             LoggerSingleton.getLogger().fatal("Error selecting reimbursements..");
             e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }
